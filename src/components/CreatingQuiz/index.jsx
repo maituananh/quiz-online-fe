@@ -1,5 +1,7 @@
-import { Answer, Button, LabelQuestion, TextEditor } from "@components/index";
+import { Answer, Button, LabelQuestion } from "@components/index";
 import { useState } from "react";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 import Switch from "react-switch";
 import { v4 as uuidv4 } from "uuid";
 
@@ -12,6 +14,7 @@ const quizAnswer = {
 function CreateQuiz() {
   const [answers, setAnswers] = useState([]);
   const [isMultipleAnswer, setIsMultipleAnswer] = useState(false);
+  const [editorValue, setEditorValue] = useState("");
 
   const handleClickAddAnswer = () => {
     const newQuiz = { ...quizAnswer, id: uuidv4() };
@@ -24,19 +27,11 @@ function CreateQuiz() {
   };
 
   const handleCorrectAnswerClick = (id) => {
-    answers.find((answer) => {
-      if (answer.id === id) {
-        answer.isCorrect = true;
-      }
-    });
+    answers.find((answer) => answer.id === id).isCorrect = true;
   };
 
   const handleChangeAnswer = (id, value) => {
-    answers.find((answer) => {
-      if (answer.id === id) {
-        answer.answer = value;
-      }
-    });
+    answers.find((answer) => answer.id === id).answer = value;
   };
 
   const handleSelectMultipleAnswer = () => {
@@ -48,7 +43,7 @@ function CreateQuiz() {
       <div className="col-span-12 p-2 space-y-2">
         <LabelQuestion />
 
-        <TextEditor />
+        <ReactQuill theme="snow" value={editorValue} onChange={setEditorValue} />
 
         <div className="flex items-center pt-3">
           <p className="text-sm font-medium text-gray-900">Choices</p>

@@ -1,5 +1,6 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from 'prop-types';
 
 function Answer({
   answerType = "radio",
@@ -27,5 +28,12 @@ function Answer({
     </div>
   );
 }
+
+Answer.propTypes = {
+  answerType: PropTypes.string,
+  handleDeleteClick: PropTypes.func,
+  handleCorrectAnswerClick: PropTypes.func,
+  handleChangeAnswer: PropTypes.func,
+};
 
 export default Answer;
