@@ -1,21 +1,15 @@
 import FooterLayout from "@layouts/Default/Footer";
 import HeaderLayout from "@layouts/Default/Header";
-import SiderLayout from "@layouts/Default/Sider";
-import { Layout } from "antd";
 
 function DefaultLayout({ children }) {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <SiderLayout />
+    <>
+      <HeaderLayout />
 
-      <Layout>
-        <HeaderLayout />
+      {children}
 
-        {children}
-
-        <FooterLayout />
-      </Layout>
-    </Layout>
+      <FooterLayout />
+    </>
   );
 }
 
