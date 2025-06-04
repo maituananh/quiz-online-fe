@@ -1,24 +1,22 @@
-import { Button, CreateQuiz } from "@components/index";
+import { Button } from "@components/index";
 import { Breadcrumb } from "antd";
 import { Content } from "antd/es/layout/layout";
-
-const creationQuiz = {
-  id: 0,
-  question: "",
-  answers: [
-    {
-      id: 0,
-      answer: "",
-      isCorrect: false,
-    },
-  ],
-}
+import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+import Question from "../../components/Question";
 
 function CreatingQuiz() {
-  const [quiz, setQuiz] = useState([]);
+  const creationQuiz = {
+    id: 0,
+    question: "",
+    answers: [],
+  };
+
+  const [quizs, setQuizs] = useState([{ ...creationQuiz, id: uuidv4() }]);
 
   const handleClickAddQuiz = () => {
-    setQuiz([...quiz, creationQuiz]);
+    quizs.push({ ...creationQuiz, id: uuidv4() });
+    setQuizs([...quizs]);
   };
 
   return (
@@ -28,7 +26,9 @@ function CreatingQuiz() {
         items={[{ title: "User" }, { title: "Bill" }]}
       />
 
-      <CreateQuiz />
+      {quizs.map((q) => (
+        <Question key={q.id} question={q} />
+      ))}
 
       <Button
         containerCss="border-2 border-dashed flex justify-center mt-1 rounded-md"

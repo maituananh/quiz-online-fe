@@ -1,6 +1,6 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function Answer({
   answerType = "radio",
@@ -9,7 +9,7 @@ function Answer({
   handleChangeAnswer,
 }) {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center justify-around bg-slate-200 p-2 rounded-md">
       <input
         className="w-4 h-4"
         type={answerType}
@@ -17,7 +17,7 @@ function Answer({
         onClick={handleCorrectAnswerClick}
       />
       <input
-        className="ml-2 h-7 w-11/12 bg-slate-200 outline-none rounded-md p-2"
+        className="ml-2 h-7 w-11/12 outline-none rounded-md pl-2"
         onChange={handleChangeAnswer}
       />
       <FontAwesomeIcon

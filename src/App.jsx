@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import routes from "./routes";
-
 function App() {
   return (
     <div className="App">

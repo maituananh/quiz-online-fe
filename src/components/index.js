@@ -1,6 +1,6 @@
 import Answer from "./Answer";
 import Button from "./Buttons";
-import CreateQuiz from "./CreatingQuiz";
 import LabelQuestion from "./Label";
+import Question from "./Question";
 
-export { Answer, Button, CreateQuiz, LabelQuestion };
+export { Answer, Button, LabelQuestion, Question };
