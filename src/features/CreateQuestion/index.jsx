@@ -1,11 +1,12 @@
-import { LabelQuestion } from "@components/index";
-import { Button } from "primereact/button";
+import { Button, Input, Label } from "@components/index";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Editor } from "primereact/editor";
 import { useState } from "react";
 import Switch from "react-switch";
 import { v4 as uuidv4 } from "uuid";
 
-function Question({ question }) {
+function CreateQuestion({ question }) {
   const quizAnswer = {
     id: 0,
     answer: "",
@@ -22,8 +23,8 @@ function Question({ question }) {
   };
 
   const handleDeleteClick = (id) => {
-    const newAnswers = answers.filter((answer) => answer.id !== id);
-    setAnswers(newAnswers);
+    question.answers = question.answers.filter((answer) => answer.id !== id);
+    setAnswers([...question.answers]);
   };
 
   const handleCorrectAnswerClick = (id) => {
@@ -39,9 +40,9 @@ function Question({ question }) {
   };
 
   return (
-    <div className="grid grid-cols-12 gap-4 border-2 rounded-md p-4 mt-5">
+    <div className="grid grid-cols-12 gap-4 border-2 rounded-md m-4 mt-5 p-3 border-blue-300">
       <div className="col-span-12 p-2 space-y-2">
-        <LabelQuestion />
+        <Label />
 
         <Editor
           value={editorValue}
@@ -62,35 +63,31 @@ function Question({ question }) {
             <span>Multiple answer</span>
           </div>
           <Button
-            className="p-1"
-            icon="pi pi-check"
             label="Add answers"
-            onClick={handleClickAddAnswer}
+            handleClick={handleClickAddAnswer}
+            type="button"
           />
-          {/* <Button
-            name="Add answers"
-            containerCss="border-2 p-1 border-dashed w-[180px] ml-5 rounded-md"
-            buttonCss="ml-2"
-            handleClickBtn={handleClickAddAnswer}
-          /> */}
         </div>
 
         <div className="space-y-2">
           {answers.map((answer) => (
-            <>
-              {/* <RadioButton
-                inputId="ingredient1"
-                name="pizza"
-                value="Cheese"
-                onChange={(e) => setIngredient(e.value)}
-                checked={ingredient === "Cheese"}
+            <div className="flex items-center justify-between space-x-2">
+              <input
+                id="default-radio-1"
+                type="radio"
+                value=""
+                name="default-radio"
+                class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300"
               />
-              <InputText
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+
+              <Input />
+
+              <FontAwesomeIcon
+                icon={faTrashCan}
+                className="text-red-500 h-5"
+                onClick={() => handleDeleteClick(answer.id)}
               />
-              <Button icon="pi pi-check" /> */}
-            </>
+            </div>
           ))}
         </div>
       </div>
@@ -98,18 +95,4 @@ function Question({ question }) {
   );
 }
 
-export default Question;
-
-{
-  /* <Answer
-              key={answer.id}
-              answerType={isMultipleAnswer ? "checkbox" : "radio"}
-              handleDeleteClick={() => handleDeleteClick(answer.id)}
-              handleChangeAnswer={(e) =>
-                handleChangeAnswer(answer.id, e.target.value)
-              }
-              handleCorrectAnswerClick={() =>
-                handleCorrectAnswerClick(answer.id)
-              }
-            /> */
-}
+export default CreateQuestion;

@@ -1,13 +1,19 @@
 import { faClipboardQuestion } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PropTypes from "prop-types";
 
-function LabelQuestion({ icon = faClipboardQuestion, name = "Question 1" }) {
+function Label({ icon = faClipboardQuestion, lable = "" }) {
   return (
     <div className="flex items-center">
       <FontAwesomeIcon icon={icon} className="w-4 h-4" />
-      <label className="ml-2 bg-neutral-100">{name}</label>
+      <label className="ml-2 bg-neutral-100">{lable}</label>
     </div>
   );
 }
 
-export default LabelQuestion;
+Label.prototype = {
+  icon: PropTypes.element,
+  lable: PropTypes.string,
+};
+
+export default Label;

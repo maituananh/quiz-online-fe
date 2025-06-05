@@ -1,6 +1,5 @@
-import Answer from "./Answer";
 import Button from "./Buttons";
-import LabelQuestion from "./Label";
-import Question from "./Question";
+import Input from "./Inputs";
+import Label from "./Labels";
 
-export { Answer, Button, LabelQuestion, Question };
+export { Button, Input, Label };

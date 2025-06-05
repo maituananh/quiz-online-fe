@@ -1,39 +1,21 @@
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import classNames from "classnames";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function Button({
-  type = "button",
-  containerCss = "",
-  buttonCss = "",
-  iconCss = "",
-  icon = faPlus,
-  name = "",
-  handleClickBtn,
-}) {
+function Button({ label, type, handleClick }) {
   return (
-    <div className={classNames(`flex items-center`, containerCss)}>
-      <FontAwesomeIcon icon={icon} className={iconCss} />
-      <button
-        type={type}
-        className={classNames(`w-full`, buttonCss)}
-        onClick={handleClickBtn}
-      >
-        {name}
-      </button>
-    </div>
+    <button
+      onClick={handleClick}
+      type={type}
+      class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+    >
+      {label}
+    </button>
   );
 }
 
 Button.propTypes = {
+  label: PropTypes.string,
   type: PropTypes.string,
-  containerCss: PropTypes.string,
-  buttonCss: PropTypes.string,
-  iconCss: PropTypes.string,
-  icon: PropTypes.object,
-  name: PropTypes.string,
-  handleClickBtn: PropTypes.func
-}
+  handleClick: PropTypes.func,
+};
 
 export default Button;

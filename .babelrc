@@ -11,7 +11,8 @@
         "@layouts": "./src/layouts",
         "@routes": "./src/routes",
         "@configs": "./src/configs",
-        "@stores": "./src/stores"
+        "@stores": "./src/stores",
+        "@features": "./src/features"
       }
     }]
   ]
