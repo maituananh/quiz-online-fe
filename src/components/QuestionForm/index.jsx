@@ -1,39 +1,47 @@
-import { Button, Input, Label } from "@components/index";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Label } from "@components/index";
 import { Editor } from "primereact/editor";
 import { useState } from "react";
 import Switch from "react-switch";
 import { v4 as uuidv4 } from "uuid";
+import AnswerInput from "../AnswerInput";
 
-function CreateQuestion({ question }) {
+function QuestionForm({ question, onDeleteQuestion, onUpdateQuestion }) {
   const quizAnswer = {
     id: 0,
     answer: "",
     isCorrect: false,
   };
 
-  const [answers, setAnswers] = useState([]);
   const [isMultipleAnswer, setIsMultipleAnswer] = useState(false);
   const [editorValue, setEditorValue] = useState("");
 
-  const handleClickAddAnswer = () => {
+  const handleAddAnswer = () => {
     question.answers.push({ ...quizAnswer, id: uuidv4() });
-    setAnswers([...question.answers]);
+    onUpdateQuestion(question.id, { answers: question.answers });
   };
 
-  const handleDeleteClick = (id) => {
-    question.answers = question.answers.filter((answer) => answer.id !== id);
-    setAnswers([...question.answers]);
+  const handleDeleteAnswer = (answerId) => {
+    const answers = question.answers.filter((answer) => answer.id !== answerId);
+    onUpdateQuestion(question.id, { answers: answers });
   };
 
-  const handleCorrectAnswerClick = (id) => {
-    answers.find((answer) => answer.id === id).isCorrect = true;
+  const handleDeleteQuestion = () => {
+    onDeleteQuestion(question.id);
   };
 
-  const handleChangeAnswer = (id, value) => {
-    answers.find((answer) => answer.id === id).answer = value;
+  const handleAnswerTextChange = (answerId, value) => {
+    const question = (question.answers.find(
+      (answer) => answer.id !== answerId
+    ).answer = value);
+    onUpdateQuestion(question.id, { answer: question });
   };
+  // const handleCorrectAnswerClick = (id) => {
+  //   answers.find((answer) => answer.id === id).isCorrect = true;
+  // };
+
+  // const handleChangeAnswer = (id, value) => {
+  //   answers.find((answer) => answer.id === id).answer = value;
+  // };
 
   const handleSelectMultipleAnswer = () => {
     setIsMultipleAnswer(!isMultipleAnswer);
@@ -64,30 +72,19 @@ function CreateQuestion({ question }) {
           </div>
           <Button
             label="Add answers"
-            handleClick={handleClickAddAnswer}
+            handleClick={handleAddAnswer}
             type="button"
           />
         </div>
 
         <div className="space-y-2">
-          {answers.map((answer) => (
-            <div className="flex items-center justify-between space-x-2">
-              <input
-                id="default-radio-1"
-                type="radio"
-                value=""
-                name="default-radio"
-                class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300"
-              />
-
-              <Input />
-
-              <FontAwesomeIcon
-                icon={faTrashCan}
-                className="text-red-500 h-5"
-                onClick={() => handleDeleteClick(answer.id)}
-              />
-            </div>
+          {question.answers.map((answer) => (
+            <AnswerInput
+              key={answer.id}
+              answer={answer}
+              onDelete={handleDeleteAnswer}
+              onTextChange={handleAnswerTextChange}
+            />
           ))}
         </div>
       </div>
@@ -95,4 +92,4 @@ function CreateQuestion({ question }) {
   );
 }
 
-export default CreateQuestion;
+export default QuestionForm;

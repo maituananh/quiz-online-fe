@@ -1,11 +1,7 @@
-import { CreateMultipleQuestion } from "@features/index";
+import QuizCreator from "../../features/QuizCreator";
 
 function CreatingQuiz() {
-  return (
-    <>
-      <CreateMultipleQuestion></CreateMultipleQuestion>
-    </>
-  );
+  return <QuizCreator />;
 }
 
 export default CreatingQuiz;
