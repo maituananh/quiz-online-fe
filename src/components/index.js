@@ -1,7 +1,17 @@
-import Answer from "./Answer";
-import Button from "./Buttons";
-import CreateQuiz from "./CreatingQuiz";
-import LabelQuestion from "./Label";
-import TextEditor from "./TextEditor";
+import AnswerInput from "./AnswerInput";
+import Button from "./Buttons/Button";
+import RadioButton from "./Buttons/Radio";
+import QuestionForm from "./Forms/Question";
+import CheckBox from "./Inputs/CheckBox";
+import InputText from "./Inputs/InputText";
+import Label from "./Labels";
 
-export { Answer, Button, CreateQuiz, LabelQuestion, TextEditor };
+export {
+  AnswerInput,
+  Button,
+  CheckBox,
+  InputText,
+  Label,
+  QuestionForm,
+  RadioButton,
+};
