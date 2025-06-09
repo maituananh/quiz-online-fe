@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 
@@ -5,6 +6,7 @@ function Button({
   css = "from-blue-500 via-blue-600 to-blue-700",
   label,
   type,
+  icon,
   handleClick,
 }) {
   return (
@@ -16,7 +18,8 @@ function Button({
         css
       )}
     >
-      {label}
+      {icon && <FontAwesomeIcon icon={icon} className="mr-2" />}
+      <p>{label}</p>
     </button>
   );
 }
