@@ -25,8 +25,10 @@ function Button({
 }
 
 Button.propTypes = {
+  css: PropTypes.string,
   label: PropTypes.string,
   type: PropTypes.string,
+  icon: PropTypes.elementType,
   handleClick: PropTypes.func,
 };
 
