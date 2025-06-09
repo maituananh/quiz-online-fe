@@ -1,7 +1,7 @@
 import NotFound from "@pages/404";
+import CreatingQuestion from "@pages/CreatingQuestion";
 import CreatingQuiz from "@pages/CreatingQuiz";
-import CreatingTopic from "@pages/CreatingTopic";
 import Home from "@pages/Home";
-import ManageQuiz from "@pages/ManageQuiz";
+import ManageQuestion from "@pages/ManageQuestion";
 
-export { CreatingQuiz, CreatingTopic, Home, ManageQuiz, NotFound };
+export { CreatingQuestion, CreatingQuiz, Home, ManageQuestion, NotFound };
