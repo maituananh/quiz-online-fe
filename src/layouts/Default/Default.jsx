@@ -6,7 +6,9 @@ function DefaultLayout({ children }) {
     <>
       <HeaderLayout />
 
-      {children}
+      <div className="screen container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">{children}</div>
+      </div>
 
       <FooterLayout />
     </>

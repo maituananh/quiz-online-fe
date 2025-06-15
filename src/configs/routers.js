@@ -1,8 +1,8 @@
 const routers = {
   home: "/",
-  creationQuiz: "/creation-quiz",
-  managementQuiz: "/management-quiz",
-  creationTopic: "/creation-topic",
+  creationQuestion: "/question-creation",
+  managementQuestion: "/question-management",
+  creationQuiz: "/quiz-creation",
   testing: "/testing",
   notFound: "*",
 };
